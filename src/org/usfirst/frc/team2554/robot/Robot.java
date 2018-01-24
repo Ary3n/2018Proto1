@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team2554.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2554.robot.commands.*;
 //import org.usfirst.frc.team2554.robot.commands.ResetGyro;
 import org.usfirst.frc.team2554.robot.subsystems.ExampleSubsystem;
 
@@ -31,8 +31,8 @@ public class Robot extends IterativeRobot {
 	double sensitivity;
 	Command autonomousCommand;
 	Timer timer;
-	ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final DriveTrain driveTrain = new DriveTrain();
+	
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
@@ -42,19 +42,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//SmartDashboard.putData("Auto mode", chooser.getPosition());
-	//	oi.resetGyro.whileHeld(new ResetGyro());
 		timer = new Timer ();
 		oi = new OI();
-		myRobot = new RobotDrive(RobotMap.driveTrain[0], RobotMap.driveTrain[1], RobotMap.driveTrain[2],RobotMap.driveTrain[3]);
-	//	DriverStation gameData;
-	//	gameData = DriverStation.getInstance();
-	//	String gameMessage = "RRL";
-	//	char firstSwitch = (char) gameMessage.substring(0);
-	//	if()
-		//char gameData2 = gamedata.substring(0);
+	//	autonomousCommand = new TurnToAngle(-90);
+		autonomousCommand = new RotateToAngle();
+		//autonomousCommand = new driveTrain.goStraight();
 	}
 
 	/**
@@ -95,10 +87,13 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
+		driveTrain.gyro.calibrate();
+		//driveTrain.timer.reset();
+		//driveTrain.timer.start();
+
 		if (autonomousCommand != null)
-			autonomousCommand.start();
+			autonomousCommand.start();		
 		
-		gyro.calibrate();
 
 	}
 
@@ -108,28 +103,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		/*if ((gyro.getAngle()%360 > 88 && gyro.getAngle()%360 < 92 ))
-		{
-			myRobot.arcadeDrive(0, 0);
-			System.out.println(gyro.getAngle());
-		}
-		else
-		{
-			myRobot.arcadeDrive(0, -0.5);
-		}
-		*/
-		if (gyro.getAngle()%360 > 270)
-		{
-			myRobot.arcadeDrive(0, 0);
-			System.out.println(gyro.getAngle());
-		}
-		else if(gyro.getAngle()%360 > (270/2))
-		{
-			myRobot.arcadeDrive(0, -0.25);
-		}
-		else{
-			myRobot.arcadeDrive(0, -0.5);
-		}
+		
+
 	}
 
 	@Override
@@ -141,8 +116,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		gyro.calibrate();
-
+		driveTrain.gyro.calibrate();
+		
 	}
 
 	/**
@@ -151,18 +126,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		
-		//Scheduler.getInstance().run();
-		sensitivity = 0.5;
-		leftNum = oi.leftStick.getRawAxis(1);
-		//rightNum = oi.rightStick.getRawAxis(1);
-		move(leftNum, rightNum, sensitivity);
-		double angle = gyro.getAngle();
-		if(oi.leftStick.getRawButton(1))
-		{
-			gyro.reset();
-		}
-		//timer.delay(.5);
-		System.out.println((int)(angle % 360));
+		Scheduler.getInstance().run();
+		
 	}
 
 	/**
@@ -178,4 +143,6 @@ public class Robot extends IterativeRobot {
 	//	myRobot.tankDrive(left*sensitivity*-1, right*sensitivity*-1, true);
 		myRobot.arcadeDrive(oi.leftStick);
 	}
+	
+	
 }

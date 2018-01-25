@@ -14,7 +14,7 @@ public class GoStraight extends Command {
 	double numberOfRotations = 0;
 	double travelDistance = 1200; //in inches
 	double rotationLength= 12; //in inches
-	Encoder encoderRight = new Encoder(0, 0); //sdsdsds
+	Encoder encoderRight = new Encoder(0, 0); //sdsdsdsdskdskdskdjs
 	Encoder encoderLeft = new Encoder(1, 1);
 
     public GoStraight() {

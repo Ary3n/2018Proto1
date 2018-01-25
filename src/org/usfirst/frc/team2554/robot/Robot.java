@@ -29,7 +29,8 @@ public class Robot extends IterativeRobot {
 	double leftNum;
 	double rightNum;
 	double sensitivity;
-	Command autonomousCommand;
+	Command autonomousCommand; 
+	int test; 
 	Timer timer;
 	public static final DriveTrain driveTrain = new DriveTrain();
 	

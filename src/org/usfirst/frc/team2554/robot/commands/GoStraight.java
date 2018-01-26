@@ -10,16 +10,18 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class GoStraight extends Command {
-	
-	double numberOfRotations = 0;
 	double travelDistance = 1200; //in inches
-	double rotationLength= 12; //in inches
-	Encoder encoderRight = new Encoder(0, 0); //sdsdsdsdskdskdskdjs
+	double rotationLength= 6.0*Math.PI; //in inches
+	double distancePerPulse = rotationLength/128;
+	Encoder encoderRight = new Encoder(0, 0);
 	Encoder encoderLeft = new Encoder(1, 1);
 
-    public GoStraight() {
+    public GoStraight(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    		double travelDistance = distance;
+    		encoderRight.setDistancePerPulse(distancePerPulse);
+    		encoderLeft.setDistancePerPulse(distancePerPulse);
     }
 
     // Called just before this Command runs the first time
@@ -30,28 +32,30 @@ public class GoStraight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(encoderRight.get() < (travelDistance/12) * 128 && encoderLeft.get() < (travelDistance/12) * 128) 
-    	{
     		Robot.driveTrain.myDrive.arcadeDrive(1, 1);
-    	}
 		Robot.driveTrain.myDrive.arcadeDrive(0, 0);
-
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	encoderLeft.reset();
-    	encoderRight.reset();
+        if(((encoderLeft.getDistance() + encoderRight.getDistance())/2) >= travelDistance) {
+        		return true;
+        }
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end()
+    {
+    		encoderLeft.reset();
+    		encoderRight.reset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    protected void interrupted()
+    {
+    		encoderLeft.reset();
+		encoderRight.reset();
     }
 }

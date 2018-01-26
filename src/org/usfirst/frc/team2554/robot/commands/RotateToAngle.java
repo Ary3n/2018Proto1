@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
-import org.usfirst.frc.team2554.robot.DriveTrain;
 import org.usfirst.frc.team2554.robot.Robot;
+import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
 
 /**
  *

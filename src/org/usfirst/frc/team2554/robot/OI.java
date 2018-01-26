@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2554.robot;
 
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -10,9 +11,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
-	public Joystick leftStick = new Joystick(0);
-    public Joystick rightStick = new Joystick(1);
- // public Button resetGyro = new JoystickButton(leftStick, 1); 
 
+	public Joystick leftStick = new Joystick(0);
+	public Joystick rightStick = new Joystick(1);
+
+
+
+	
 }

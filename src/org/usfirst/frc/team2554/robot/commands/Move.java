@@ -1,27 +1,38 @@
 package org.usfirst.frc.team2554.robot.commands;
 
+import org.usfirst.frc.team2554.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class GoStraightPIDCommand extends Command {
-	double currentHeading, headingError;
-	double DRIVE_KP; 
-	double correction, steeringSpeedRight, steeringSpeedLeft;
-	
-	
-    public GoStraightPIDCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class Move extends Command {
+	double leftSide;
+	double rightSide;
+	double sensitivity = 0.6;
+	final public double DEADZONE = 0.15;
+    public Move() {
+
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+  
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	leftSide = Robot.oi.leftStick.getY();
+    	rightSide = Robot.oi.rightStick.getY();
+    	if(isDeadzone(leftSide, DEADZONE))
+    		leftSide = 0;
+    	
+    	if(isDeadzone(rightSide, DEADZONE))
+    		rightSide = 0;
+    	
+    	Robot.driveTrain.myDrive.tankDrive(leftSide, rightSide);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,5 +47,15 @@ public class GoStraightPIDCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    public static boolean isDeadzone(double value, double deadzone)
+    {
+    	if(value<deadzone)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
     }
 }

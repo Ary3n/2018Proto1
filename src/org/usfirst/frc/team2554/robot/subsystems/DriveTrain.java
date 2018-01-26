@@ -1,7 +1,9 @@
-package org.usfirst.frc.team2554.robot;
+package org.usfirst.frc.team2554.robot.subsystems;
 
 
 import org.usfirst.frc.team2554.robot.*;
+import org.usfirst.frc.team2554.robot.commands.Move;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -25,9 +27,9 @@ public class DriveTrain extends Subsystem {
 
 
 	public void initDefaultCommand() {
-		myDrive.setSafetyEnabled(false);
+		//myDrive.setSafetyEnabled(false);
 		// Set the default command for a subsystem here.
-
+		setDefaultCommand(new Move());
 		//setDefaultCommand(new MySpecialCommand());
 	}
 

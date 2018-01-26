@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2554.robot.commands.*;
-//import org.usfirst.frc.team2554.robot.commands.ResetGyro;
-import org.usfirst.frc.team2554.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +44,8 @@ public class Robot extends IterativeRobot {
 		timer = new Timer ();
 		oi = new OI();
 	//	autonomousCommand = new TurnToAngle(-90);
-		autonomousCommand = new RotateToAngle();
+		//autonomousCommand = new RotateToAngle();
+		//autonomousCommand = 
 		//autonomousCommand = new driveTrain.goStraight();
 	}
 
@@ -127,6 +127,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
+		
 		
 	}
 

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class HoldElevator extends Command {
 
-	private double holdVoltage = 9000;
+	private double holdVoltage = .4;
     public HoldElevator() {
         
     	requires(Robot.elevator);

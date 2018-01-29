@@ -15,18 +15,17 @@ public class DistanceDrive extends Command {
     double Kp = 0.03;
     double distance = 0;
 
-    Encoder encoderRight = new Encoder(0, 1);
-    Encoder encoderLeft = new Encoder(2, 3);
+    
 
     public DistanceDrive(double dist) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         distance = dist;
-        encoderRight.setDistancePerPulse(distancePerPulse);
-        encoderLeft.setDistancePerPulse(distancePerPulse);
+        Robot.driveTrain.encoderRight.setDistancePerPulse(distancePerPulse);
+        Robot.driveTrain.encoderLeft.setDistancePerPulse(distancePerPulse);
         
-        encoderRight.setMaxPeriod(.1);
-        encoderLeft.setMaxPeriod(.1);
+        Robot.driveTrain.encoderRight.setMaxPeriod(.1);
+        Robot.driveTrain.encoderLeft.setMaxPeriod(.1);
         
         
     }
@@ -34,8 +33,8 @@ public class DistanceDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.driveTrain.resetGyro();
-        encoderLeft.reset();
-        encoderRight.reset();
+        Robot.driveTrain.encoderLeft.reset();
+        Robot.driveTrain.encoderRight.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +45,7 @@ public class DistanceDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (((encoderLeft.getDistance() + encoderRight.getDistance()) / 2) >= distance) {
+        if (((Robot.driveTrain.encoderLeft.getDistance() + Robot.driveTrain.encoderRight.getDistance()) / 2) >= distance) {
             return true;
         }
         return false;
@@ -54,14 +53,14 @@ public class DistanceDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        encoderLeft.reset();
-        encoderRight.reset();
+        Robot.driveTrain.encoderLeft.reset();
+        Robot.driveTrain.encoderRight.reset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        encoderLeft.reset();
-        encoderRight.reset();
+        Robot.driveTrain.encoderLeft.reset();
+        Robot.driveTrain.encoderRight.reset();
     }
 }

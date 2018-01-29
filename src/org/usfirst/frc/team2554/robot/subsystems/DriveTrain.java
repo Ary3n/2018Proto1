@@ -5,6 +5,7 @@ import org.usfirst.frc.team2554.robot.*;
 import org.usfirst.frc.team2554.robot.commands.Move;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -27,6 +28,9 @@ public class DriveTrain extends Subsystem {
 
 	Victor frontRight = new Victor(RobotMap.driveTrain[2]);
 	Victor backRight = new Victor(RobotMap.driveTrain[3]);
+	
+	public Encoder encoderRight = new Encoder(0, 1);
+    public Encoder encoderLeft = new Encoder(2, 3);
 	
 	SpeedControllerGroup right = new SpeedControllerGroup(frontRight, backRight);
 	
@@ -96,4 +100,9 @@ public class DriveTrain extends Subsystem {
 		 		myDrive.tankDrive(0, 0);
 		 	}
 	    }
+	 
+	 public void log()
+	 {
+		 SmartDashboard.putNumber("Angle", getGyroAngle());
+	 }
 }

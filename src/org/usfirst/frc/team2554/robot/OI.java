@@ -36,8 +36,8 @@ public class OI {
 	
 	public OI() {
 		home.whenPressed(new MoveElevator(0));
-		portal.whenPressed(new MoveElevator(1));
-		switche.whenPressed(new MoveElevator(2));
+		switche.whenPressed(new MoveElevator(1));
+		portal.whenPressed(new MoveElevator(2));
 		scale.whenPressed(new MoveElevator(3));
 		climb.whenPressed(new MoveElevator(4));
 		climbSafety.toggleWhenPressed(new ToggleRatchet());

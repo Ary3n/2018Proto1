@@ -19,10 +19,10 @@ public class Elevator extends Subsystem {
 
 
 	// 0: HOME
-	// 1: PORTAL 
-	// 2: SCALE
-	// 3: CLIMB
-	// 4: TOP 
+	// 1: SWITCH
+	// 2: PORTAL 
+	// 3: SCALE
+	// 4: CLIMB
 
 	Victor eM1 = new Victor(RobotMap.elevator[0]);
 	Victor eM2 = new Victor(RobotMap.elevator[1]);

@@ -32,7 +32,7 @@ public class Move extends Command {
     	if(isDeadzone(rightSide, DEADZONE))
     		rightSide = 0;
     	
-    	Robot.driveTrain.myDrive.tankDrive(leftSide, rightSide);
+    	Robot.driveTrain.teleopDrive(leftSide*sensitivity, rightSide*sensitivity);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,37 +1,33 @@
 package org.usfirst.frc.team2554.robot.commands;
 
 import org.usfirst.frc.team2554.robot.Robot;
-import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2554.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TurnToAngle extends Command {
+public class HoldElevator extends Command {
 
-	double turnAngle;
-	boolean end;
-    public TurnToAngle(double Angle) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	turnAngle = Angle;
-    	requires(Robot.driveTrain);
+	private double holdVoltage = 9000;
+    public HoldElevator() {
+        
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	 Robot.driveTrain.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	end = Robot.driveTrain.turn(turnAngle);
+    	Robot.elevator.move(RobotMap.up * holdVoltage);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return end;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -42,5 +38,4 @@ public class TurnToAngle extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
 }

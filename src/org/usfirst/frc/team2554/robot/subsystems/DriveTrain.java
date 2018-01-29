@@ -7,8 +7,11 @@ import org.usfirst.frc.team2554.robot.commands.Move;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -16,8 +19,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 
 public class DriveTrain extends Subsystem {
+	
+	Victor frontLeft = new Victor(RobotMap.driveTrain[0]);
+	Victor backLeft = new Victor(RobotMap.driveTrain[1]);
+	
+	SpeedControllerGroup left = new SpeedControllerGroup(frontLeft, backLeft);
 
-	public RobotDrive myDrive = new RobotDrive(RobotMap.driveTrain[0], RobotMap.driveTrain[1], RobotMap.driveTrain[2],RobotMap.driveTrain[3]);
+	Victor frontRight = new Victor(RobotMap.driveTrain[2]);
+	Victor backRight = new Victor(RobotMap.driveTrain[3]);
+	
+	SpeedControllerGroup right = new SpeedControllerGroup(frontRight, backRight);
+	
+	public DifferentialDrive myDrive = new DifferentialDrive(left,right);
+	
 	public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	Timer timer; 
 	double currentHeading;
@@ -27,15 +41,12 @@ public class DriveTrain extends Subsystem {
 
 
 	public void initDefaultCommand() {
-		//myDrive.setSafetyEnabled(false);
-		// Set the default command for a subsystem here.
 		setDefaultCommand(new Move());
-		//setDefaultCommand(new MySpecialCommand());
 	}
 
-	public void userDrive(Joystick leftStick, Joystick rightStick)
+	public void teleopDrive(double leftVal, double rightVal)
 	{
-		myDrive.tankDrive(leftStick, rightStick);
+		myDrive.tankDrive(leftVal, rightVal);
 	}
 
 	public void calibrateGyro()

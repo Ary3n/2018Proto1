@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2554.robot.commands.*;
 import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2554.robot.subsystems.Elevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 	int test; 
 	Timer timer;
 	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final Elevator elevator = new Elevator();
 	
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -128,7 +130,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
-		
+		elevator.log();
 		
 	}
 

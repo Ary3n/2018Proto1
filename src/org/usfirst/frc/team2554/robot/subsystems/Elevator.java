@@ -25,7 +25,7 @@ public class Elevator extends Subsystem {
 	// 4: TOP 
 
 	Victor elevatorMotor1 = new Victor(RobotMap.elevator[0]);
-	Victor elevatorMotor2 = new Victor(RobotMap.elevator[1]);
+	Victor elevatorMotor2 = new Victor(RobotMap.elevator[1]); //Elevator Motor 2
 
 	DigitalInput[] limit = new DigitalInput[]{ new DigitalInput(RobotMap.limitSwitches[0]), new DigitalInput(RobotMap.limitSwitches[1]),new DigitalInput(RobotMap.limitSwitches[2]),new DigitalInput(RobotMap.limitSwitches[3]),
 			new DigitalInput(RobotMap.limitSwitches[4])};

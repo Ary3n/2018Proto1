@@ -35,7 +35,7 @@ public class Elevator extends Subsystem {
 		setDefaultCommand(new HoldElevator());
 	}
 
-
+	//
 
 	public void setRatchet(boolean rat)
 	{

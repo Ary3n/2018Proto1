@@ -18,14 +18,22 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 
+<<<<<<< HEAD
 	// 0: HOME
 	// 1: SWITCH
 	// 2: PORTAL 
 	// 3: SCALE
 	// 4: CLIMB
+=======
+	// 0: HOME =
+	// 1: PORTAL =  
+	// 2: SCALE
+	// 3: CLIMB
+	// 4: TOP 
+>>>>>>> origin/master
 
-	Victor eM1 = new Victor(RobotMap.elevator[0]);
-	Victor eM2 = new Victor(RobotMap.elevator[1]);
+	Victor elevatorMotor1 = new Victor(RobotMap.elevator[0]);
+	Victor elevatorMotor2 = new Victor(RobotMap.elevator[1]); //Elevator Motor 2
 
 	DigitalInput[] limit = { new DigitalInput(RobotMap.limitSwitches[0]), new DigitalInput(RobotMap.limitSwitches[1]),new DigitalInput(RobotMap.limitSwitches[2]),new DigitalInput(RobotMap.limitSwitches[3]),new DigitalInput(RobotMap.limitSwitches[4])};
 	
@@ -35,34 +43,34 @@ public class Elevator extends Subsystem {
 
 	
 	Spark ratchet = new Spark(RobotMap.spark[0]);
-	public boolean rStatus;
+	public boolean ratchetStatus;
 	public void initDefaultCommand() {
 		setDefaultCommand(new HoldElevator());
 	}
 
-
+	//
 
 	public void setRatchet(boolean rat)
 	{
 		if(rat)
 		{
 			ratchet.set(RobotMap.up * RobotMap.rSpeed);
-			rStatus = true;
+			ratchetStatus = true;
 		}
 
 		else 
 		{
-			rStatus = false;
+			ratchetStatus = false;
 			ratchet.set(0);
 		}
 	}
 
 	public void move(double speed)
 	{
-		if(!((speed>0) && getLimit(4)) && !((speed<0) && getLimit(0)) && !(rStatus && (speed<0)))
+		if(!((speed>0) && getLimit(4)) && !((speed<0) && getLimit(0)) && !(ratchetStatus && (speed<0)))
 		{
-		eM1.set(speed);
-		eM2.set(speed);
+		elevatorMotor1.set(speed);
+		elevatorMotor2.set(speed);
 		}
 		
 		else
@@ -71,8 +79,8 @@ public class Elevator extends Subsystem {
 
 	public void stop()
 	{
-		eM2.set(0);
-		eM1.set(0);
+		elevatorMotor2.set(0);
+		elevatorMotor1.set(0);
 
 	}
 
@@ -110,7 +118,7 @@ public class Elevator extends Subsystem {
 	public void log()
 	{
 		SmartDashboard.putNumber("Limit Switch", updateStatus());
-		SmartDashboard.putBoolean("Ratchet", rStatus );
+		SmartDashboard.putBoolean("Ratchet", ratchetStatus );
 	}
 
 	

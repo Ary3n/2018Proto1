@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DistanceDrive extends Command {
 
-    double distancePerPulse = (6.0 * Math.PI) / 128; // rotationlength/numberofpulsesperrotation
+    double distancePerPulse = (6.0 * 3.1415926535897932384626433832795028841971693993751) / 128; // rotationlength/numberofpulsesperrotation
     double angle;
     double Kp = 0.03;
     double distance = 0;

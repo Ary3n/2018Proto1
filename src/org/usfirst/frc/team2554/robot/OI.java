@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2554.robot;
 
 
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -16,6 +15,13 @@ import org.usfirst.frc.team2554.robot.commands.ToggleRatchet;
  */
 public class OI {
 
+	
+
+     //0: HOME
+	// 1: SWITCH j 
+	// 2: PORTAL 
+	// 3: SCALE
+	// 4: CLIMB
 	public Joystick leftStick = new Joystick(0);
 	public Joystick rightStick = new Joystick(1);
 	public Joystick elevatorStick = new Joystick(3);

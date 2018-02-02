@@ -53,6 +53,7 @@ public class DistanceDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.myDrive.arcadeDrive(0,0);
         Robot.driveTrain.encoderLeft.reset();
         Robot.driveTrain.encoderRight.reset();
     }
@@ -60,6 +61,7 @@ public class DistanceDrive extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.driveTrain.myDrive.arcadeDrive(0,0);
         Robot.driveTrain.encoderLeft.reset();
         Robot.driveTrain.encoderRight.reset();
     }

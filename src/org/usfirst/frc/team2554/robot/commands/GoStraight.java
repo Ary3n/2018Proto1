@@ -19,7 +19,7 @@ public class GoStraight extends Command {
     public GoStraight(double distance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		double travelDistance = distance;
+    		travelDistance = distance;
     		encoderRight.setDistancePerPulse(distancePerPulse);
     		encoderLeft.setDistancePerPulse(distancePerPulse);
     }

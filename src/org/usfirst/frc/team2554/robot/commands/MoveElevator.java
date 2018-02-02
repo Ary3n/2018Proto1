@@ -9,6 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+
+     //0: HOME
+	// 1: SWITCH
+	// 2: PORTAL 
+	// 3: SCALE
+	// 4: CLIMB
 public class MoveElevator extends Command {
 
 	private int goal;

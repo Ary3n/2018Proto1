@@ -27,8 +27,13 @@ public class Elevator extends Subsystem {
 	Victor eM1 = new Victor(RobotMap.elevator[0]);
 	Victor eM2 = new Victor(RobotMap.elevator[1]);
 
-	DigitalInput[] limit = new DigitalInput[]{ new DigitalInput(RobotMap.limitSwitches[0]), new DigitalInput(RobotMap.limitSwitches[1]),new DigitalInput(RobotMap.limitSwitches[2]),new DigitalInput(RobotMap.limitSwitches[3]),
-			new DigitalInput(RobotMap.limitSwitches[4])};
+	DigitalInput[] limit = { new DigitalInput(RobotMap.limitSwitches[0]), new DigitalInput(RobotMap.limitSwitches[1]),new DigitalInput(RobotMap.limitSwitches[2]),new DigitalInput(RobotMap.limitSwitches[3]),new DigitalInput(RobotMap.limitSwitches[4])};
+	
+	 
+	
+	
+
+	
 	Spark ratchet = new Spark(RobotMap.spark[0]);
 	public boolean rStatus;
 	public void initDefaultCommand() {

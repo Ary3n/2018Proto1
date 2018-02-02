@@ -18,19 +18,12 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 
-<<<<<<< HEAD
+
 	// 0: HOME
 	// 1: SWITCH
 	// 2: PORTAL 
 	// 3: SCALE
 	// 4: CLIMB
-=======
-	// 0: HOME =
-	// 1: PORTAL =  
-	// 2: SCALE
-	// 3: CLIMB
-	// 4: TOP 
->>>>>>> origin/master
 
 	Victor elevatorMotor1 = new Victor(RobotMap.elevator[0]);
 	Victor elevatorMotor2 = new Victor(RobotMap.elevator[1]); //Elevator Motor 2

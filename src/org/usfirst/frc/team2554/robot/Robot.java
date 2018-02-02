@@ -26,9 +26,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public RobotDrive myRobot;
-	double leftNum;
-	double rightNum;
-	double sensitivity;
 	Command autonomousCommand; 
 	int test; 
 	Timer timer;

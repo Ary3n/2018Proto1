@@ -11,13 +11,13 @@ import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
  *
  */
 public class RotateToAngle extends PIDCommand {
-	public RotateToAngle() {
+	public RotateToAngle(int angle) {
 		super(0.019,2,-0.04);
 		getPIDController().setInputRange(-180,180);
 		getPIDController().setOutputRange(-0.5, 0.5);
 		getPIDController().setToleranceBuffer(3);
 		getPIDController().setAbsoluteTolerance(0.005);
-		getPIDController().setSetpoint(-90);
+		getPIDController().setSetpoint(angle);
 		getPIDController().setContinuous(true);
 		requires(Robot.driveTrain);
 	}

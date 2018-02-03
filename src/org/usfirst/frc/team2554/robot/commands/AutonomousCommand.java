@@ -9,7 +9,7 @@ public class AutonomousCommand extends CommandGroup {
 
     public AutonomousCommand() {
     	
-    		addSequential(new GoStraight(120));
+    		addSequential(new DistanceDriveAlternatePID(120, 0));
     		addSequential(new RotateToAngle(90));
     		
     		

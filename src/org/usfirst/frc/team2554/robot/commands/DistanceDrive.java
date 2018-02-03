@@ -82,10 +82,17 @@ public class DistanceDrive extends Command {
     		return Robot.driveTrain.left.get();
     }
     
+    protected double updateMotorPowerRight()
+    {
+    		return Robot.driveTrain.right.get();
+    }
+    
     public void log()
 	{
 		SmartDashboard.putNumber("Encoder Distance", distanceStatus());
 		SmartDashboard.putNumber("Angle", angleStatus() );
 		SmartDashboard.putNumber("Motor Power Left",updateMotorPowerLeft());
+		SmartDashboard.putNumber("Motor Power Right",updateMotorPowerRight());
+
 	}
 }

@@ -9,19 +9,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DistanceDrive extends Command {
+public class DistanceDriveAlternatePID extends Command {
 
-    double distancePerPulse = (6.0 * 3.1415926535897932384626433832795028841971693993751) / 128; // rotationlength/numberofpulsesperrotation
-    double angle;
+    double distancePerPulse = (6.0 * Math.PI) / 128; // rotationlength/numberofpulsesperrotation
+    double currentAngle;
+    double targetAngle; 
+    double angleError;
+    double correctionPower; 
     double Kp = 0.03;
     double distance = 0;
 
-    
-
-    public DistanceDrive(double dist) {
+   
+    public DistanceDriveAlternatePID(double dist, int ang) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         distance = dist;
+        targetAngle = ang;
         Robot.driveTrain.encoderRight.setDistancePerPulse(distancePerPulse);
         Robot.driveTrain.encoderLeft.setDistancePerPulse(distancePerPulse);
         
@@ -40,8 +43,14 @@ public class DistanceDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        angle = Robot.driveTrain.getGyroAngle();
-        Robot.driveTrain.myDrive.arcadeDrive(0.5, angle * Kp);
+        currentAngle = Robot.driveTrain.getGyroAngle();
+        angleError = currentAngle - targetAngle; 
+        correctionPower = angleError * Kp;
+        
+        double steeringSpeedRight = 0.5 + correctionPower;
+        	double steeringSpeedLeft =  0.5 - correctionPower;
+        	
+        Robot.driveTrain.myDrive.arcadeDrive(steeringSpeedLeft, steeringSpeedRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -74,7 +83,7 @@ public class DistanceDrive extends Command {
     
     protected double angleStatus()
     {
-    		return angle;
+    		return currentAngle;
     }
     
     protected double updateMotorPowerLeft()
@@ -82,10 +91,16 @@ public class DistanceDrive extends Command {
     		return Robot.driveTrain.left.get();
     }
     
+    protected double updateMotorPowerRight()
+    {
+    		return Robot.driveTrain.right.get();
+    }
+    
     public void log()
 	{
 		SmartDashboard.putNumber("Encoder Distance", distanceStatus());
 		SmartDashboard.putNumber("Angle", angleStatus() );
 		SmartDashboard.putNumber("Motor Power Left",updateMotorPowerLeft());
+		SmartDashboard.putNumber("Motor Power Right",updateMotorPowerRight());
 	}
 }

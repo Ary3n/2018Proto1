@@ -24,15 +24,19 @@ public class DriveTrain extends Subsystem {
 	Victor frontLeft = new Victor(RobotMap.driveTrain[0]);
 	Victor backLeft = new Victor(RobotMap.driveTrain[1]);
 	
-	SpeedControllerGroup left = new SpeedControllerGroup(frontLeft, backLeft);
-
 	Victor frontRight = new Victor(RobotMap.driveTrain[2]);
 	Victor backRight = new Victor(RobotMap.driveTrain[3]);
+	
+	public SpeedControllerGroup left = new SpeedControllerGroup(frontLeft, backLeft);
+	public SpeedControllerGroup right = new SpeedControllerGroup(frontRight, backRight);
+	
+	
+	
 	
 	public Encoder encoderRight = new Encoder(RobotMap.encoderRight[0], RobotMap.encoderRight[1]);
     public Encoder encoderLeft = new Encoder(RobotMap.encoderLeft[0],RobotMap.encoderLeft[1]);
 	
-	SpeedControllerGroup right = new SpeedControllerGroup(frontRight, backRight);
+	
 	
 	public DifferentialDrive myDrive = new DifferentialDrive(left,right);
 	

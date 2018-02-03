@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team2554.robot.commands.*;
-import org.usfirst.frc.team2554.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team2554.robot.subsystems.Elevator;
+import org.usfirst.frc.team2554.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +30,7 @@ public class Robot extends IterativeRobot {
 	Timer timer;
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
+	public static final Intake intake = new Intake();
 	
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 

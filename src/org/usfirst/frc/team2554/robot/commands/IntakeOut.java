@@ -6,28 +6,16 @@ import org.usfirst.frc.team2554.robot.Robot;
 /**
  *
  */
-public class IntakeCommand extends Command {
+public class IntakeOut extends Command {
 
-    String direction = "stop";
-	public IntakeCommand(String direct) {
+    public IntakeOut() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intake);
-        direction = direct;
     }
 
     // Called just before this Command runs the first time
-    protected void initialize(){
-    		switch(direction) {
-	    		case "stop":
-	    			Robot.intake.Stop();
-	    			break;
-	    		case "in":
-	    			Robot.intake.In();
-	    			break;
-	    		case "out":
-	    			Robot.intake.Out();
-	    			break;
-    		}
+    protected void initialize() {
+		Robot.intake.Out();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +24,7 @@ public class IntakeCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

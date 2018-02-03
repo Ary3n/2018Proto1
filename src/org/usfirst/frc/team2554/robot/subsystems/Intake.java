@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public Intake() {
-    		intake.set(0.0);
+    		
     }
     public void In() {
     		intake.set(-1.0);

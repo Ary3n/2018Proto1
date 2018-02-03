@@ -30,13 +30,10 @@ public class Elevator extends Subsystem {
 
 	DigitalInput[] limit = { new DigitalInput(RobotMap.limitSwitches[0]), new DigitalInput(RobotMap.limitSwitches[1]),new DigitalInput(RobotMap.limitSwitches[2]),new DigitalInput(RobotMap.limitSwitches[3]),new DigitalInput(RobotMap.limitSwitches[4])};
 	
-	 
-	
-	
-
-	
 	Spark ratchet = new Spark(RobotMap.spark[0]);
 	public boolean ratchetStatus;
+	
+	
 	public void initDefaultCommand() {
 		setDefaultCommand(new HoldElevator());
 	}
@@ -45,7 +42,8 @@ public class Elevator extends Subsystem {
 
 	public void setRatchet(boolean rat)
 	{
-		if(rat)
+		/* 
+		 if(rat)
 		{
 			ratchet.set(RobotMap.up * RobotMap.rSpeed);
 			ratchetStatus = true;
@@ -56,12 +54,14 @@ public class Elevator extends Subsystem {
 			ratchetStatus = false;
 			ratchet.set(0);
 		}
+		*/
 	}
 
 	public void move(double speed)
 	{
-		if(!((speed>0) && getLimit(4)) && !((speed<0) && getLimit(0)) && !(ratchetStatus && (speed<0)))
+		if(!((speed>0) && getLimit(1)) && !((speed<0) && getLimit(0)))
 		{
+		SmartDashboard.putNumber("Motor Speed", speed);
 		elevatorMotor1.set(speed);
 		elevatorMotor2.set(speed);
 		}
@@ -85,7 +85,7 @@ public class Elevator extends Subsystem {
 	public int updateStatus()	
 	{
 		int currentSpot;
-		for(int i = 0; i < 5 ; i++)
+		for(int i = 0; i < 2 ; i++)
 		{
 			if(limit[i].get())
 			{
@@ -111,7 +111,8 @@ public class Elevator extends Subsystem {
 	public void log()
 	{
 		SmartDashboard.putNumber("Limit Switch", updateStatus());
-		SmartDashboard.putBoolean("Ratchet", ratchetStatus );
+		SmartDashboard.putBoolean("Limit 0", limit[0].get());
+		SmartDashboard.putBoolean("Limit 1", limit[1].get());
 	}
 
 	

@@ -20,15 +20,16 @@ public class MoveElevator extends Command {
 	private int goal;
 	private int currentLocation;
 	private int direction;
-	Elevator elevator = Robot.elevator;
+	Elevator elevator;
 	double[] speed = RobotMap.speeds;
     public MoveElevator(int goal) {
-       requires(elevator);
+       requires(Robot.elevator);
+       elevator = Robot.elevator;
        this.goal = goal;
     }
 
     protected void initialize() {
-    	currentLocation = elevator.updateStatus();
+    
     }
 
     protected void execute() {
@@ -37,6 +38,14 @@ public class MoveElevator extends Command {
     	{
     		currentLocation = elevator.updateStatus();
     	}
+    	
+    	
+    	else
+    	{
+    		currentLocation = 0;
+    	}
+    	
+    	
     	int distance = Math.abs(goal - currentLocation);
     	
     	if(goal>currentLocation)

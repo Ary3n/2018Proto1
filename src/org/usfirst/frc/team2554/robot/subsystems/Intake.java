@@ -22,13 +22,12 @@ public class Intake extends Subsystem {
     public Intake() {
     		
     }
-    public void In() {
-    		intake.set(-1.0);
+   
+    public void set(double speed)
+    {
+    	intake.set(speed);
     }
-    public void Out() {
-    		intake.set(1.0);
-    }
-    public void Stop() {
+    public void stop() {
     		intake.set(0.0);
     }
 }

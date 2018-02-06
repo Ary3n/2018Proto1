@@ -32,6 +32,8 @@ public class OI {
 	int buttonScale = 6;
 	int buttonClimb = 1 ;
 	int buttonClimbSafety = 9;
+	int intakeTrigger = 1;
+	int shootTrigger = 2;
 	Button home = new JoystickButton(elevatorStick, buttonHome);
     Button portal = new JoystickButton(elevatorStick, buttonPortal);
     Button switche = new JoystickButton(elevatorStick, buttonSwitch);
@@ -49,5 +51,24 @@ public class OI {
 		climbSafety.toggleWhenPressed(new ToggleRatchet());
 	}
 	
+	public double leftStick()
+	{
+		return leftStick.getY();
+	}
+	
+	public double rightStick()
+	{
+		return rightStick.getY();
+	}
+	
+	public double intakeTrigger()
+	{
+		return elevatorStick.getRawAxis(intakeTrigger);
+	}
+	
+	public double shootTrigger()
+	{
+		return elevatorStick.getRawAxis(shootTrigger);
+	}
 	
 }

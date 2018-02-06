@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Move extends Command {
+public class TankDrive extends Command {
 	double leftSide;
 	double rightSide;
 	double sensitivity = 0.6;
 	final public double DEADZONE = 0.15;
-    public Move() {
+    public TankDrive() {
 
     	requires(Robot.driveTrain);
     }

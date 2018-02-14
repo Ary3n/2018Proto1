@@ -25,13 +25,13 @@ public class MiddleGroup extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
-    		addSequential(new DistanceDrive(101.5));
+     	addSequential(new MoveElevator(1));
+    		addSequential(new DistanceDrive(1));
     		addSequential(new RotateToAngle(90*daWae));
-    		addSequential(new DistanceDrive(132));
+    		addSequential(new DistanceDrive(89.5));
     		addSequential(new RotateToAngle(-90*daWae));
-    		addSequential(new DistanceDrive(48));
+    		addSequential(new DistanceDrive(36));
     		addSequential(new RotateToAngle(-90*daWae));
-    		//TODO: Move forward, drop za arm, and then shooooot!
+    		//TODO: Move forward, drop za arm, and zen shooooot!
     }
 }
